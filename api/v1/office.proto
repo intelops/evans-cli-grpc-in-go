@@ -1,0 +1,68 @@
+syntax = "proto3";
+package gen;
+option go_package="./api/v1;gen";
+
+message Office {
+    string id = 1;
+    string office_name = 2;
+    string address = 3;
+    uint64 employees_count = 4;
+    int64 turn_over = 5;
+}
+
+message PingRequest {}
+
+message PingResponse {
+    string message = 1;
+}
+
+message CreateRequest {
+    Office office = 1;
+}
+
+message CreateResponse {
+    string message = 1;
+}
+
+message GetRequest {
+    string id = 1;
+}
+
+message GetResponse {
+    Office office = 1;
+}
+
+message DeleteRequest {
+    string id = 1;
+}
+
+message DeleteResponse {
+    string message = 1;
+}
+
+message UpdateRequest {
+    string id = 1;
+    Office office = 2;
+}
+
+message UpdateResponse {
+    string message = 1;
+}
+
+message ListRequest {
+}
+
+message ListResponse {
+    repeated Office office = 1;
+}
+
+
+
+service OfficeService {
+    rpc Ping (PingRequest) returns (PingResponse);
+    rpc CreateOffice (CreateRequest) returns (CreateResponse){};
+    rpc GetOffice (GetRequest) returns (GetResponse);
+    rpc DeleteOffice (DeleteRequest) returns (DeleteResponse);
+    rpc UpdateOffice (UpdateRequest) returns (UpdateResponse);
+    rpc ListOffice (ListRequest) returns (ListResponse);
+}
